@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 from pwn import *
 from pygments import highlight
 from pygments.lexers import CLexer
