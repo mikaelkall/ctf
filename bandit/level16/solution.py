@@ -18,5 +18,5 @@ def connectToLevel():
 context(arch='i386', os='linux')
 
 sh = connectToLevel()
-p = sh.process("for i in $(nmap -p 31000-32000 localhost |egrep -o \"[0-9][0-9][0-9][0-9][0-9]\" |tac) ; do echo cluFn7wTiGryunymYOu4RcffSxQluehd | openssl s_client -ign_eof -quiet -connect localhost:$i; done",shell=True)
+p = sh.process("for i in $(nmap -p 31000-32000 localhost |egrep -o \"[0-9][0-9][0-9][0-9][0-9]\" |tac) ; do echo %s | openssl s_client -ign_eof -quiet -connect localhost:$i; done" % password,shell=True)
 log.info('Key = %s' % p.recvuntil('-----END RSA PRIVATE KEY-----'))
