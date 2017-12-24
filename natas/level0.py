@@ -11,14 +11,14 @@ import sys
 import os
 import re
 
-# SETTINGS localhost
-AUTH_URL  = 'http://natas0.natas.labs.overthewire.org'
-AUTH_USER = 'natas0'
-AUTH_PASS = 'natas0'
+level = 0
+user = 'natas%s' % level
+host = 'http://natas0.natas.labs.overthewire.org'
+password = 'natas0'
 
 def authenticate():
 
-    r = requests.get(AUTH_URL, auth=(AUTH_USER, AUTH_PASS))
+    r = requests.get(host, auth=(user, password))
     return r
 
 def get_flag():
