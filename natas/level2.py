@@ -1,8 +1,8 @@
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 """
-  level1.py
-  Solution for natas level1
+  level2.py
+  Solution for natas level2
 """
 __author__ = 'kall.micke@gmail.com'
 
