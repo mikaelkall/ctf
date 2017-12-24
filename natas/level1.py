@@ -1,8 +1,8 @@
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 """
-  level0.py
-  Solution for natas level0
+  level1.py
+  Solution for natas level1
 """
 __author__ = 'kall.micke@gmail.com'
 
@@ -11,10 +11,10 @@ import sys
 import os
 import re
 
-level = 0
+level = 1
 user = 'natas%s' % level
 host = 'http://natas%s.natas.labs.overthewire.org' % level
-password = 'natas0'
+password = 'gtVrDuiDfck831PqWsLEZy5gyDz1clto'
 
 def authenticate():
 
@@ -23,7 +23,7 @@ def authenticate():
 
 def get_flag():
     content = authenticate()
-    return str([c for c in content.text.split('\n') if 'The password for natas1' in c][0].split('is')[1].split()[0])
+    return str([c for c in content.text.split('\n') if 'The password for natas2' in c][0].split('is')[1].split()[0])
 
 if __name__ == '__main__':
     print("Flag: %s" % get_flag())
