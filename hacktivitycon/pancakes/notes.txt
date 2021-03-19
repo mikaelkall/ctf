@@ -1,0 +1,35 @@
+[*] '/home/nighter/dev/ctf/hacktivitycon/pancakes/pancakes'
+    Arch:     amd64-64-little
+    RELRO:    Partial RELRO
+    Stack:    No canary found
+    NX:       NX enabled
+    PIE:      No PIE (0x400000)
+[*] 0x40098b target
+[+] Opening connection to jh2i.com on port 50021: Done
+Welcome to the pancake stacker!
+How many pancakes do you want?
+[+] Receiving all data: Done (476B)
+[*] Closed connection to jh2i.com port 50021
+
+Cooking your cakes.....
+Smothering them in butter.....
+Drowning them in syrup.....
+They're ready! Our waiters are bringing them out now...
+        _____________
+       /    ___      \
+      ||    \__\     ||
+      ||      _      ||
+      |\     / \     /|
+      \ \___/ ^ \___/ /
+      \\____/_^_\____//_
+    __\\____/_^_\____// \
+   /   \____/_^_\____/ \ \
+  //                   , /
+  \\___________   ____  /
+               \_______/
+
+flag{too_many_pancakes_on_the_stack}
+
+
+[*] Switching to interactive mode
+[*] Got EOF while reading in interactive
